@@ -15,4 +15,9 @@ class AssetsManager {
       "$base/quran_details_pattern_right.png";
   static const String quranDetailsPatterLeft =
       "$base/quran_details_pattern_left.png";
+  static const String onboarding1 = "$base/onbarding1.png";
+  static const String onboarding2 = "$base/onbarding2.png";
+  static const String onboarding3 = "$base/onbarding3.png";
+  static const String onboarding4 = "$base/onbarding4.png";
+  static const String onboarding5 = "$base/onbarding5.png";
 }
