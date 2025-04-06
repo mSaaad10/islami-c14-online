@@ -29,16 +29,14 @@ class _MainLayoutState extends State<MainLayout> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                ColorsManager.black.withOpacity(0),
-                ColorsManager.black,
-              ]),
-          image: const DecorationImage(
-              fit: BoxFit.fill,
-              image: AssetImage(AssetsManager.quranTabBackground))),
+        gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              ColorsManager.black.withOpacity(0),
+              ColorsManager.black,
+            ]),
+      ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           body: tabs[selecteIndex],

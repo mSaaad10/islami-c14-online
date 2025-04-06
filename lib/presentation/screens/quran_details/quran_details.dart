@@ -60,7 +60,9 @@ class _QuranDetailsState extends State<QuranDetails> {
             ),
             Expanded(
                 child: suraContent.isEmpty
-                    ? const LoadingWidget()
+                    ? const LoadingWidget(
+                        color: ColorsManager.gold,
+                      )
                     : QuranContent(content: suraContent)),
           ],
         ),

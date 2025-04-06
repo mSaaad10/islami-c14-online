@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:islami_app_c14_online_sun/presentation/screens/hadith_details/hadith_details.dart';
 import 'package:islami_app_c14_online_sun/presentation/screens/main_layout/main_layout.dart';
 import 'package:islami_app_c14_online_sun/presentation/screens/onboarding/onboarding.dart';
 import 'package:islami_app_c14_online_sun/presentation/screens/quran_details/quran_details.dart';
@@ -9,10 +10,12 @@ class RoutesManager {
   static const String mainLayout = "/mainLayout";
   static const String quranDetails = "/quranDetails";
   static const String onboarding = "/onboarding";
+  static const String hadithDetails = "/hadithDetails";
   static Map<String, WidgetBuilder> routes = {
     splash: (_) => const Splash(),
     mainLayout: (_) => const MainLayout(),
     quranDetails: (_) => const QuranDetails(),
     onboarding: (_) => OnBoarding(),
+    hadithDetails: (_) => HadithDetails(),
   };
 }

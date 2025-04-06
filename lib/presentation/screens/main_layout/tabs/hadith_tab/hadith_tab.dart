@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:islami_app_c14_online_sun/core/assets_manager.dart';
+import 'package:islami_app_c14_online_sun/presentation/screens/main_layout/tabs/hadith_tab/widgets/hadith_card.dart';
 
 class HadithTab extends StatelessWidget {
   const HadithTab({super.key});
@@ -6,7 +9,35 @@ class HadithTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.yellowAccent,
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage(AssetsManager.hadithTabBackground)),
+      ),
+      child: Column(
+        children: [
+          Expanded(child: Image.asset(AssetsManager.islamiLogo)),
+          Expanded(
+            flex: 4,
+            child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 600.0,
+                  enlargeCenterPage: true,
+                  viewportFraction: 0.8,
+                ),
+                items: List.generate(
+                  50,
+                  (index) => index + 1,
+                )
+                    .map(
+                      (index) => HadithCard(index: index),
+                    )
+                    .toList()),
+          ),
+        ],
+      ),
     );
   }
 }
