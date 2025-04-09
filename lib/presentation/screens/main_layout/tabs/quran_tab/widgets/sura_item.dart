@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:islami_app_c14_online_sun/core/assets_manager.dart';
 import 'package:islami_app_c14_online_sun/core/colors_manager.dart';
 import 'package:islami_app_c14_online_sun/core/constant_manager.dart';
+import 'package:islami_app_c14_online_sun/core/prefs_manager/prefs_manager.dart';
 import 'package:islami_app_c14_online_sun/core/routes_manager.dart';
+import 'package:islami_app_c14_online_sun/presentation/screens/main_layout/tabs/quran_tab/widgets/most_recent_suras.dart';
 
 class SuraItem extends StatefulWidget {
-  const SuraItem({super.key, required this.suraDM});
+  const SuraItem(
+      {super.key, required this.suraDM, required this.mostRecentKey});
 
   final SuraDM suraDM;
+  final GlobalKey<MostRecentSurasState> mostRecentKey;
 
   @override
   State<SuraItem> createState() => _SuraItemState();
@@ -15,8 +19,11 @@ class SuraItem extends StatefulWidget {
 
 class _SuraItemState extends State<SuraItem> {
   void _onSuraItemClicked() {
+    int suraIndex = int.parse(widget.suraDM.suraIndex) - 1;
+    PrefsManager.addSuraIndex(suraIndex);
     Navigator.pushNamed(context, RoutesManager.quranDetails,
         arguments: QuranDetailsArguments(
+            mostRecentKey: widget.mostRecentKey,
             suraNameEn: widget.suraDM.suraNameEn,
             suraNameAr: widget.suraDM.suraNameAr,
             suraIndex: widget.suraDM.suraIndex));
@@ -80,9 +87,11 @@ class QuranDetailsArguments {
   final String suraNameEn;
   final String suraNameAr;
   final String suraIndex;
+  final GlobalKey<MostRecentSurasState>? mostRecentKey;
 
   QuranDetailsArguments(
       {required this.suraNameEn,
       required this.suraNameAr,
-      required this.suraIndex});
+      required this.suraIndex,
+      this.mostRecentKey});
 }

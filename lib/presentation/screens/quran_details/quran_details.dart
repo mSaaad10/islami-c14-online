@@ -27,6 +27,13 @@ class _QuranDetailsState extends State<QuranDetails> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    arguments.mostRecentKey?.currentState?.refreshMostRecentSuras();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
