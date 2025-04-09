@@ -13,6 +13,9 @@ class QuranTab extends StatefulWidget {
 }
 
 class _QuranTabState extends State<QuranTab> {
+  String searchKey = '';
+  List<SuraDM> filteredSuras = [];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,22 +63,37 @@ class _QuranTabState extends State<QuranTab> {
     );
   }
 
+  void filterSurasList() {
+    filteredSuras = ConstantManager.suraList;
+
+    /// 114 sura
+    filteredSuras = filteredSuras
+        .where(
+          (suraDM) =>
+              suraDM.suraNameEn
+                  .toLowerCase()
+                  .contains(searchKey.toLowerCase()) ||
+              suraDM.suraNameAr.contains(searchKey),
+        )
+        .toList();
+  }
+
   Widget buildSurasList() {
+    filterSurasList();
+
     return ListView.separated(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      separatorBuilder: (context, index) => const Divider(
-        indent: 64,
-        endIndent: 64,
-        thickness: 1,
-        color: ColorsManager.white,
-      ),
-      itemBuilder: (context, index) => SuraItem(
-        index: index,
-        suraDM: ConstantManager.suraList[index],
-      ),
-      itemCount: ConstantManager.suraList.length,
-    );
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        separatorBuilder: (context, index) => const Divider(
+              indent: 64,
+              endIndent: 64,
+              thickness: 1,
+              color: ColorsManager.white,
+            ),
+        itemBuilder: (context, index) => SuraItem(
+              suraDM: filteredSuras[index],
+            ),
+        itemCount: filteredSuras.length);
   }
 
   Widget buildMostRecentSuras() {
@@ -93,6 +111,12 @@ class _QuranTabState extends State<QuranTab> {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height * 0.09,
       child: TextField(
+        //ab
+        onChanged: (userInput) {
+          searchKey = userInput;
+          setState(() {});
+        },
+
         cursorColor: Colors.white,
         style: const TextStyle(
             fontSize: 18,

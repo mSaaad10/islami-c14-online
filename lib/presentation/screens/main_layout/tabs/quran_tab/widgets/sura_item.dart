@@ -5,9 +5,8 @@ import 'package:islami_app_c14_online_sun/core/constant_manager.dart';
 import 'package:islami_app_c14_online_sun/core/routes_manager.dart';
 
 class SuraItem extends StatefulWidget {
-  const SuraItem({super.key, required this.index, required this.suraDM});
+  const SuraItem({super.key, required this.suraDM});
 
-  final int index;
   final SuraDM suraDM;
 
   @override
@@ -20,7 +19,7 @@ class _SuraItemState extends State<SuraItem> {
         arguments: QuranDetailsArguments(
             suraNameEn: widget.suraDM.suraNameEn,
             suraNameAr: widget.suraDM.suraNameAr,
-            index: widget.index));
+            suraIndex: widget.suraDM.suraIndex));
   }
 
   @override
@@ -34,7 +33,7 @@ class _SuraItemState extends State<SuraItem> {
             children: [
               Image.asset(AssetsManager.suraNumberBackground),
               Text(
-                "${widget.index + 1}",
+                "${widget.suraDM.suraIndex}",
                 style: TextStyle(
                     fontSize: 14,
                     color: ColorsManager.white,
@@ -80,10 +79,10 @@ class _SuraItemState extends State<SuraItem> {
 class QuranDetailsArguments {
   final String suraNameEn;
   final String suraNameAr;
-  final int index;
+  final String suraIndex;
 
   QuranDetailsArguments(
       {required this.suraNameEn,
       required this.suraNameAr,
-      required this.index});
+      required this.suraIndex});
 }
